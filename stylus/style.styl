@@ -1,0 +1,54 @@
+@import 'nib'
+global-reset()
+*, *:before, *:after
+  box-sizing border-box
+
+/**
+ * THEME
+ * Variables
+ */
+@import 'theme/colors'
+@import 'theme/sizes'
+
+/**
+ * CORE
+ * Variables and essential media query setup
+ */
+@import 'type/fonts'
+@import 'type/core'
+@import 'type/styles'
+@import 'core/media'
+@import 'core/html'
+@import 'core/input'
+
+/**
+ * COMMON
+ * Resources to setup behaviours and rules
+ */
+@import 'common/mixins'
+@import 'common/forms'
+@import 'common/icons'
+@import 'common/layouts'
+@import 'motion/transition'
+@import 'motion/animation'
+
+/**
+ * INTERACTIVES
+ */
+@import 'ui/core'
+@import 'ui/behaviour'
+@import 'ui/types'
+/**
+ * ELEMENTS
+ * Barebone application wrappers
+ */
+@import 'elements/header'
+@import 'elements/footer'
+@import 'elements/figure'
+@import 'elements/wrappers'
+
+/**
+ * COMPONENTS
+ */
+@import 'components/state'
+
