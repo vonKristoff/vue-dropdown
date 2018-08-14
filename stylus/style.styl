@@ -50,5 +50,23 @@ global-reset()
 /**
  * COMPONENTS
  */
-@import 'components/state'
+@import 'components/container'
+@import 'components/child'
+@import 'components/inner-child'
 
+.button
+  display inline-block
+  background yellow
+  cursor pointer
+  padding .25em .75em
+  border-bottom-right-radius 20px
+  border-right .125em solid black
+  border-bottom .125em solid black
+
+[class*="-component"]
+  transition height .3s
+
+.dropdown-children
+  overflow-y hidden
+  transition all .3s
+  height 0

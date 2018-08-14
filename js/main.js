@@ -1,5 +1,7 @@
-console.log('heelo world')
+import Vue from 'vue/dist/vue'
+import Container from './components/container/container.js'
 
-if (ENV !== 'production') {
-    console.log('Logging is enabled!');
-}
+const app = new Vue({
+    el: '#root',
+    components: { Container }
+})
