@@ -1,0 +1,1 @@
+<div class="container-component"><div ref="trigger" class="dropdown-trigger"><div @click="toggle" class="button">[+]</div></div><div ref="children" :style="styleOpen" class="dropdown-children"><child v-for="item, index in list" :key="index" name="child" @height="update"></child></div></div>

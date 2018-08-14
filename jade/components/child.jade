@@ -1,0 +1,5 @@
+.child-component
+  .dropdown-trigger(ref="trigger")
+    .button(@click="toggle") [+]
+  .dropdown-children(ref="children" ":style"="styleOpen")
+    inner-child(@height="update" name="children-of-node")
