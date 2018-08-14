@@ -9,9 +9,7 @@ export default {
     },
     mounted() {
         this.closed = this.$el.scrollHeight
-        this.$nextTick(() => {
-            this.$children.forEach(child => this.children.push(child.$el.scrollHeight))
-        })        
+        this.$nextTick(() => this.children = this.$children.map(child => child.$el.scrollHeight))        
     },
     computed: {
         childrenHeight() {
@@ -38,6 +36,10 @@ export default {
                     else this.children.push(child.closed)
                 })
             })
+        },
+        resize() {
+            this.closed = this.$el.scrollHeight            
+            this.children = this.$children.map(child => child.$el.scrollHeight)
         }
     }
 }
