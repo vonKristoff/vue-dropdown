@@ -1,21 +1,33 @@
-#vue-dropdown
+# vue-dropdown
 
-### Package Module into CJS Format
-This can now be included in another `rollup` built bundle.  
-Work on `es6/package.js`, and create with..
-    
-    npm run package
+Tree-node nested dropdown container that allows for animated heights.
 
-### Testing bundle
-Work in `js/main` as usual
+_ruleset JS_
 
-    npm start
+Extend your existing component to turn into a dropdown container 
 
----
+```
+import DropDown from './dropdown'
+// component
+extends: DropDown
+```
 
-### notes
-* `async.js` - allows css scripts to be loaded in async via the `link rel=preload as=style`
-* `ENV variables` are available, see `npm run production` and in `js/main.js`. Also `rollup.config.js` detects `ENV` and `uglifies` where applicable.
-* [eslint](http://eslint.org/docs/user-guide/configuring) check the manual for any issues with ES6
+_ruleset Vue app_
 
----
+Name your root container in the template when issuing a dropdown component
+
+```
+container(name="parent")
+```
+
+_ruleset Template_
+
+Rules for determining children
+
+```
+.my-component
+  .dropdown-trigger(@click="toggle)
+  .dropdown-children
+    child-dropdown-component(v-for="item in collection" ":key"="item" @height="update")
+```
+
