@@ -5,7 +5,6 @@ import Child from '../child/child'
 export default {
     name: "container",
     template,
-    props: ['name'],
     extends: Dropdown,
     components: { Child },
     data() {

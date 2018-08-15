@@ -1,14 +1,18 @@
 export default {
+    props: ['name'],
     data() {
         return {
             isDropdown: true,
             open: false,
-            closed: 0,
+            lastHeight: 0,
             children: []
         }
     },
+    created() {
+        window.addEventListener('resize', this.resize)
+    },
     mounted() {
-        this.closed = this.$el.scrollHeight
+        this.lastHeight = this.$el.scrollHeight
         this.$nextTick(() => this.children = this.$children.map(child => child.$el.scrollHeight))        
     },
     computed: {
@@ -16,9 +20,9 @@ export default {
             return this.children.reduce((a, b) => a + b)
         },
         containerHeight() {
-            return this.childrenHeight + this.closed
+            return this.childrenHeight + this.lastHeight
         },
-        styleOpen() {
+        styleHeight() {
             return this.open ? { height: `${this.childrenHeight}px` } : {}
         }
     },
@@ -26,21 +30,26 @@ export default {
         toggle() {
             this.open = !this.open
             this.$emit('height')
-            if(this.name === "parent") this.$children.forEach(recussiveClose)
+            if(this.hasOwnProperty('name') && this.name === "parent") this.$children.forEach(recussiveClose)
         },
         update() {
             this.$nextTick(() => {
                 this.children = []
                 this.$children.forEach(child => {
                     if(child.open) this.children.push(child.containerHeight)
-                    else this.children.push(child.closed)
+                    else this.children.push(child.lastHeight)
                 })
             })
         },
         resize() {
-            this.closed = this.$el.scrollHeight            
-            this.children = this.$children.map(child => child.$el.scrollHeight)
+            this.$nextTick(() => {
+                this.lastHeight = this.$el.scrollHeight            
+                this.children = this.$children.map(child => child.$el.scrollHeight)
+            })            
         }
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.resize)
     }
 }
 function recussiveClose(child) {

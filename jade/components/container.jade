@@ -1,5 +1,5 @@
 .container-component
-  .dropdown-trigger(ref="trigger")
+  .dropdown-trigger
     .button(@click="toggle") [+]
-  .dropdown-children(ref="children" ":style"="styleOpen")
-    child(v-for="item, index in list" ":key"="index" name="child" @height="update")
+  .dropdown-children(":style"="styleHeight")
+    child(v-for="item, index in list" ":key"="index" @height="update")
