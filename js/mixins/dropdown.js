@@ -42,10 +42,12 @@ export default {
             })
         },
         resize() {
+            setTimeout(() => {
             this.$nextTick(() => {
-                this.lastHeight = this.$el.scrollHeight            
+                if(!this.open) this.lastHeight = this.$el.scrollHeight            
                 this.children = this.$children.map(child => child.$el.scrollHeight)
-            })            
+            })
+            }, 300)
         }
     },
     beforeDestroy() {
